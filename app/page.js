@@ -200,7 +200,20 @@ export default function Home() {
           alignItems={"center"}
           bgcolor={"#ADD8E6"}
         >
-          <Typography variant={"h2"} color={"#333"} textAlign={"center"}>
+          <Typography
+            variant={"h2"}
+            color={"#333"}
+            textAlign={"center"}
+            sx={{
+              fontSize: {
+                xs: "1.5rem",
+                sm: "2rem",
+                md: "2.5rem",
+                lg: "3rem",
+                xl: "3.5rem",
+              },
+            }}
+          >
             Pantry Items🛒
           </Typography>
         </Box>
@@ -208,60 +221,83 @@ export default function Home() {
           {filteredPantry.map(({ name, count }) => (
             <Box
               key={name}
-              direction={"row"}
-              spacing={2}
-              justifyContent={"center"}
-              alignContent={"center"}
+              width="100%"
+              minHeight="150px"
+              display={"flex"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              bgcolor={"#f0f0f0"}
+              paddingX={3}
+              paddingY={2}
+              sx={{
+                flexDirection: { xs: "column", sm: "row" }, // Stack items vertically on small screens
+                gap: { xs: 1, sm: 2 }, // Adjust gap between items based on screen size
+              }}
             >
-              <Box
-                key={name}
-                width="100%"
-                minHeight="150px"
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                bgcolor={"#f0f0f0"}
-                paddingX={5}
+              <Typography
+                variant={"h3"}
+                color={"#333"}
+                textAlign={"center"}
+                sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.8rem" } }}
               >
-                <Typography
-                  variant={"h3"}
-                  color={"#333"}
-                  textAlign={"center"}
-                  sx={{ fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" } }}
-                >
-                  {name.charAt(0).toUpperCase() + name.slice(1)}
-                </Typography>
-                <Typography
-                  variant={"h3"}
-                  color={"#333"}
-                  textAlign={"center"}
-                  sx={{ fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" } }}
-                >
-                  {count}
-                </Typography>
+                {name.charAt(0).toUpperCase() + name.slice(1)}
+              </Typography>
+              <Typography
+                variant={"h3"}
+                color={"#333"}
+                textAlign={"center"}
+                sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.8rem" } }}
+              >
+                {count}
+              </Typography>
+              <Stack direction={"row"} spacing={1} sx={{ flexShrink: 0 }}>
                 <Button
-                  width="60px"
                   variant="contained"
-                  sx={{ bgcolor: "#46c414" }}
+                  sx={{
+                    bgcolor: "#46c414",
+                    width: { xs: "40px", sm: "50px" },
+                    height: { xs: "40px", sm: "50px" },
+                    minWidth: "auto",
+                    fontSize: { xs: "0.75rem", sm: "1rem" },
+                  }}
                   onClick={() => addItem(name)}
                 >
-                  <PlusOneOutlinedIcon />
+                  <PlusOneOutlinedIcon
+                    sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
+                  />
                 </Button>
                 <Button
                   variant="contained"
-                  sx={{ bgcolor: "#46c414" }}
+                  sx={{
+                    bgcolor: "#46c414",
+                    width: { xs: "40px", sm: "50px" },
+                    height: { xs: "40px", sm: "50px" },
+                    minWidth: "auto",
+                    fontSize: { xs: "0.75rem", sm: "1rem" },
+                  }}
                   onClick={() => removeItem(name)}
                 >
-                  <RemoveCircleOutlineOutlinedIcon />1
+                  <RemoveCircleOutlineOutlinedIcon
+                    sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
+                  />
+                  1
                 </Button>
                 <Button
                   variant="contained"
-                  sx={{ bgcolor: "red" }}
+                  sx={{
+                    bgcolor: "red",
+                    width: { xs: "40px", sm: "50px" },
+                    height: { xs: "40px", sm: "50px" },
+                    minWidth: "auto",
+                    fontSize: { xs: "0.75rem", sm: "1rem" },
+                  }}
                   onClick={() => deleteItem(name)}
                 >
-                  <DeleteIcon />
+                  <DeleteIcon
+                    sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
+                  />
                 </Button>
-              </Box>
+              </Stack>
             </Box>
           ))}
         </Stack>
